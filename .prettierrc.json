@@ -1,0 +1,9 @@
+{
+    "tailwindConfig": "./tailwind.config.cjs",
+    "plugins": ["./node_modules/prettier-plugin-tailwindcss"],
+    "printWidth": 400,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "tabWidth": 2
+}

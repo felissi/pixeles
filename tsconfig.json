@@ -1,0 +1,14 @@
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "types": ["@types/jest"],
+  },
+  "exclude": ["nuxt.config.ts"],
+}
