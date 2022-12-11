@@ -1,7 +1,7 @@
 @tailwind base;
 @layer base {
     body {
-        @apply bg-gray-100 text-gray-600 dark:bg-[#151515] bg-[#151515] dark:text-[#CAC4D0];
+        @apply bg-white text-gray-600 dark:bg-[#151515]  dark:text-[#CAC4D0];
         /* @apply bg-gray-100 text-gray-600 dark:bg-[#151515] dark:text-white; */
     }
 }
