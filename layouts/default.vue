@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <Hero />
+  
   <NuxtPage></NuxtPage>
 </template>
 <script>

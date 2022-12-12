@@ -15,8 +15,7 @@ async def py_getBlob(files):
     for i,f in enumerate(files):
         print(f'file name is {f.name}')
         print(f'keys of f={f.object_keys()}')
-        url = js.URL.createObjectURL(f.blob)
-        # ==== end display =====
+        # url = js.URL.createObjectURL(f.blob)
         hash = await file_to_hash(f.blob)
         update_image_details(i,hash,url)
         print(hash)

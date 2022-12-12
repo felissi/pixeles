@@ -6,7 +6,7 @@
         <div class="text-base text-black md:text-2xl">The simplest way to scan for duplicated images.</div>
 
         <div class="mb-[32px] text-base text-black md:text-2xl">All happens in your device.</div>
-        <button type="button" class="mr-2 mb-2 w-[228px] rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-[20px] text-center text-2xl font-medium text-white focus:outline-none focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-800">Get started</button>
+        <button type="button" class="mr-2 mb-2 w-[228px] rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-[20px] text-center text-2xl font-medium text-white focus:outline-none focus:ring-4 focus:ring-purple-500 dark:focus:ring-purple-800">Get started</button>
       </div>
     </div>
   </div>

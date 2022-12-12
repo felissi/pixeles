@@ -1,11 +1,14 @@
 <template>
+  <Hero />
   <div>
     <py-config class="hidden" type="json"> { "packages": ["numpy","Pillow","imagehash"], "paths":[] } </py-config>
+    <div class="mb-[220px]"></div>
     <Dropzone>
-      <input type="file" id="dropzone-file" class="hidden" multiple @change="fileUpload" @click="LoadPyScript" />
+      <input type="file" id="dropzone-file" class="hidden" accept="image/*, video/*" multiple @change="fileUpload" @click="LoadPyScript" />
     </Dropzone>
-    <label for="">Upload</label>
+    <Preview />
     <button id="ScanBtn">GOOOOOOOOOOO</button>
+    <!-- <TableWrapper /> -->
     <div>{{ image.inputImages }}</div>
     <div>{{ `imageStore: ${imageStore.allImages}` }}</div>
     <py-script src="/image.py"> </py-script>
@@ -51,7 +54,7 @@ export default {
           size: size,
           type: type,
           lastModified: lastModified,
-          url: '',
+          url: URL.createObjectURL(f),
           hash: '',
           blob: f
         })
