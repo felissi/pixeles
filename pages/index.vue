@@ -1,7 +1,7 @@
 <template>
   <Hero />
   <div>
-    <py-config class="hidden" type="json"> { "packages": ["numpy","Pillow","imagehash"], "paths":[] } </py-config>
+    <py-config type="json"> { "packages": ["numpy","Pillow","imagehash"], "paths":[] } </py-config>
     <div class="mb-[220px]"></div>
     <Dropzone>
       <input type="file" id="dropzone-file" class="hidden" accept="image/*, video/*" multiple @change="fileUpload" @click="LoadPyScript" />
