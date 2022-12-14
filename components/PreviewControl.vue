@@ -15,9 +15,11 @@
       </a> -->
     </div>
     <div class="col-span-1 hidden items-center justify-center space-x-2 sm:flex"></div>
-    <div class="col-span-1 flex justify-end">
+    <div class="col-span-1 flex justify-end px-1">
+      <ControlSearchBtn />
       <ControlListBtn />
-
+      <ControlThumbnailBtn />
+      <ControlDeleteBtn />
     </div>
   </div>
 </template>
