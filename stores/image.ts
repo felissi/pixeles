@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 interface Image {
-  id:number
+  id: number
   name: string
   size: number
   type: string
@@ -16,6 +16,7 @@ interface State {
   deletedImages: Image[]
   currentImages: Image[]
   inputImages: Partial<FileList>
+  goingDelete: { [id: number]: null }
 }
 
 export const useImageStore = defineStore('image', {
@@ -25,21 +26,33 @@ export const useImageStore = defineStore('image', {
       selectedImages: [],
       deletedImages: [],
       currentImages: [],
-      inputImages: []
+      inputImages: [],
+      goingDelete: {}
     }
   },
   actions: {
-    grouping<T, U>(arr: T[], func: (v: T, i: number, arr: T[]) => Readonly<U>) {
-      let r = {}
-      for (let i = 0; i < arr.length; i++) {
-        r[func(v, i, arr)] = r[func(v, i, arr)] ?? []
-        r[func(v, i, arr)].push(arr[i])
-      }
-      return r
+    // grouping<T, U>(arr: T[], func: (v: T, i: number, arr: T[]) => Readonly<U>) {
+    //   let r = {}
+    //   for (let i = 0; i < arr.length; i++) {
+    //     r[func(v, i, arr)] = r[func(v, i, arr)] ?? []
+    //     r[func(v, i, arr)].push(arr[i])
+    //   }
+    //   return r
+    // },
+    pendingDelete(id: number | null) {
+      if (typeof id == 'number') this.goingDelete[id] = null
+    },
+    withdrawPending(id: number) {
+      delete this.goingDelete[id]
     }
   },
   getters: {
-    allImagesByHash(state: State) {
+    allImagesByHash(state: State) {},
+    pendingDeleteList(): number[] {
+      return Object.keys(this.goingDelete).map((s) => Number(s))
+    },
+    isAllSelected(): boolean {
+      return Object.keys(this.goingDelete).length === this.allImages.length
     }
   }
 })

@@ -19,6 +19,7 @@
       <ControlSearchBtn />
       <ControlListBtn />
       <ControlThumbnailBtn />
+      <ControlDeleteBtn />
     </div>
   </div>
 </template>

@@ -6,14 +6,14 @@
           <table class="mb-[32px] w-full table-fixed sm:table-auto">
             <thead class="border-b bg-white">
               <tr>
-                <th scope="col" class="w-[32px] px-6 py-4 text-left text-sm font-medium text-gray-900 sm:w-fit"><TableCheckBox /></th>
+                <th scope="col" class="w-[32px] px-6 py-4 text-left text-sm font-medium text-gray-900 sm:w-fit"><ControlTableParentCheckBox /></th>
                 <!-- <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900 sm:w-[64px] min-w-[40px] w-[40px]"></th> -->
                 <th scope="col" :key="i" v-for="(head, i) in header" class="px-6 py-4 text-left text-sm font-medium text-gray-900" :class="headerClass[i]">{{ head }}</th>
               </tr>
             </thead>
             <tbody>
               <tr :key="image.id" v-for="image in image.allImages" class="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-100">
-                <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900`"><TableCheckBox /></td>
+                <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900`"><ControlTableCheckBox :id="image.id" /></td>
                 <!-- <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900`"><img :src="image.url" class="w-[38px] h-[38px] sm:w-[64px] sm:h-[64px] mx-auto"/></td> -->
                 <td :class="`whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 ${headerClass[0]}`">
                   <div class="flex items-center align-top"><img :src="image.url" class="mr-3 h-[38px] w-[38px] sm:h-[64px] sm:w-[64px] rounded" />{{ image.name }}</div>
