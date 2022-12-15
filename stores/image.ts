@@ -44,6 +44,20 @@ export const useImageStore = defineStore('image', {
     },
     withdrawPending(id: number) {
       delete this.goingDelete[id]
+    },
+    deleteImages() {
+      const save: Image[] = []
+      this.allImages.forEach((image) => {
+        if (this.pendingDeleteList.includes(image.id)) {
+          this.deletedImages.push(image)
+        } else {
+          save.push(image)
+        }
+      })
+      this.allImages = save
+    },
+    undoDelete() {
+      
     }
   },
   getters: {
