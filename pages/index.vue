@@ -1,17 +1,17 @@
 <template>
   <Hero />
   <div>
-    <py-config type="json"> { "packages": ["numpy","Pillow","imagehash"], "paths":[] } </py-config>
     <div class="mb-[220px]"></div>
     <Dropzone>
-      <input type="file" id="dropzone-file" class="hidden" accept="image/*, video/*" multiple @change="fileUpload" @click="LoadPyScript" />
+      <input type="file" id="dropzone-file" class="hidden" accept="image/*, video/*" multiple @change="fileUpload" />
+      <!-- @click="LoadPyScript" -->
     </Dropzone>
     <Preview />
     <button id="ScanBtn">GOOOOOOOOOOO</button>
-    <!-- <TableWrapper /> -->
-    <div>{{ image.inputImages }}</div>
+    <!-- <div>{{ image.inputImages }}</div> -->
     <div>{{ `imageStore: ${imageStore.allImages}` }}</div>
-    <py-script src="/image.py"> </py-script>
+    <component :is="`py-script`" src="/image.py"></component>
+    <Snackbar />
   </div>
 </template>
 <script lang="ts">
@@ -20,23 +20,24 @@ export default {
   mixins: [imageMixin],
   data() {
     return {
-      isPyScriptLoaded: false,
+      // isPyScriptLoaded: false,
       uploadCounter: 0 // For id, always increment
     }
   },
   methods: {
     LoadPyScript() {
-      if (!this.isPyScriptLoaded) {
-        const head = document.getElementsByTagName('head')[0]
-        head.innerHTML = head.innerHTML + `<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />`
-
-        const node = document.createElement('script')
-        node.src = 'https://pyscript.net/latest/pyscript.js'
-        node.defer = true
-        head.appendChild(node)
-        this.isPyScriptLoaded = true
-        this.nextStep()
-      }
+      // if (!this.isPyScriptLoaded) {
+      //   // const body = document.getElementsByTagName('body')[0]
+      //   // body.innerHTML = body.innerHTML + `<py-config src="/pyconfig.toml"></py-config>`
+      //   // const head = document.getElementsByTagName('body')[0]
+      //   // head.innerHTML = head.innerHTML + `<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />`
+      //   // const node = document.createElement('script')
+      //   // node.src = 'https://pyscript.net/latest/pyscript.js'
+      //   // node.defer = true
+      //   // head.appendChild(node)
+      //   this.isPyScriptLoaded = true
+      //   this.nextStep()
+      // }
     },
     nextStep() {},
     fileUpload(event: Event) {
@@ -68,8 +69,5 @@ export default {
     }
   },
   watch: {}
-  // mounted() {
-  //   window.process.env={LOG:''}
-  // }
 }
 </script>

@@ -14,6 +14,7 @@ interface State {
   allImages: Image[]
   selectedImages: Image[]
   deletedImages: Image[]
+  recentDeleted: Image[]
   currentImages: Image[]
   inputImages: Partial<FileList>
   goingDelete: { [id: number]: null }
@@ -25,6 +26,7 @@ export const useImageStore = defineStore('image', {
       allImages: [],
       selectedImages: [],
       deletedImages: [],
+      recentDeleted: [],
       currentImages: [],
       inputImages: [],
       goingDelete: {}
@@ -47,17 +49,22 @@ export const useImageStore = defineStore('image', {
     },
     deleteImages() {
       const save: Image[] = []
+      this.recentDeleted = []
       this.allImages.forEach((image) => {
         if (this.pendingDeleteList.includes(image.id)) {
           this.deletedImages.push(image)
+          this.recentDeleted.push(image)
         } else {
           save.push(image)
         }
       })
       this.allImages = save
+      this.goingDelete = {}
     },
     undoDelete() {
-      
+      this.allImages = this.allImages.concat(this.recentDeleted)
+      this.allImages.sort((a, b) => a.id - b.id)
+      this.recentDeleted = []
     }
   },
   getters: {

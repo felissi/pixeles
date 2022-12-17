@@ -19,7 +19,13 @@
       <ControlSearchBtn />
       <ControlListBtn />
       <ControlThumbnailBtn />
-      <ControlDeleteBtn />
+      <ControlDeleteBtn @click="imageStore.deleteImages"/>
     </div>
   </div>
 </template>
+<script lang="ts">
+import { imageMixin } from '@/stores/imports/imageMixin'
+export default {
+  mixins: [imageMixin],
+}
+</script>
