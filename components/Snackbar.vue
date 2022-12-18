@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted() {
-    this.$bus.$on('ShowSnackbar', (text) => {
+    this.$bus.$on('ShowSnackbar', (text:string) => {
       this.show = true
     })
   },
