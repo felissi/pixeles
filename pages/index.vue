@@ -8,10 +8,12 @@
     </Dropzone>
     <Preview />
   </div>
-  <button id="ScanBtn">GOOOOOOOOOOO</button>
+  <!-- <button id="ScanBtn">GOOOOOOOOOOO</button> -->
   <!-- <div>{{ image.inputImages }}</div> -->
   <div>{{ `imageStore: ${imageStore.allImages}` }}</div>
   <component :is="`py-script`" src="/image.py"></component>
+  <FloatingActionBtn />
+  <SmallActionBtn />
   <Snackbar />
   <div class="h-[500px]">sdasd</div>
 </template>

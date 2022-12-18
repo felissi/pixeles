@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       show: false,
-      timeOut: 5
+      timeout: 5
     }
   },
   mounted() {
@@ -46,7 +46,7 @@ export default {
       if (yes) {
         setTimeout(() => {
           this.show = false
-        }, this.timeOut * 1000)
+        }, this.timeout * 1000)
       }
     }
   }
