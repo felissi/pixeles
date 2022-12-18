@@ -1,10 +1,10 @@
 <template>
   <div class="flex w-full flex-col">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-        <div class="overflow-hidden">
+      <div class="inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-y-auto h-screen lg:min-h-min">
           <table class="mb-[32px] w-full table-fixed sm:table-auto">
-            <thead class="border-b bg-white">
+            <thead class="border-b bg-white sticky z-10 top-0">
               <tr>
                 <th scope="col" class="w-[32px] px-6 py-4 text-left text-sm font-medium text-gray-900 sm:w-fit"><ControlTableParentCheckBox /></th>
                 <!-- <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900 sm:w-[64px] min-w-[40px] w-[40px]"></th> -->
