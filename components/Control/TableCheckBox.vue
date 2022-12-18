@@ -7,14 +7,17 @@
 <script lang="ts">
 import { imageMixin } from '@/stores/imports/imageMixin'
 import { controlMixin } from '@/stores/imports/controlMixin'
+import { Image } from '@/stores/image'
 export default {
   mixins: [imageMixin, controlMixin],
   props: {
-    id: { default: null, type: Number }
+    // id: { default: null, type: Number }
+    item: { default: {} as Image }
   },
   data() {
     return {
-      checked: false
+      checked: false,
+      id: this.item.id
     }
   },
   computed: {
@@ -29,15 +32,17 @@ export default {
     checked(check: boolean) {
       if (check) {
         this.imageStore.pendingDelete(this.id)
+        this.imageStore.select(this.item)
       } else {
         this.controlStore.selectAll = false
         this.imageStore.withdrawPending(this.id)
+        this.imageStore.unselect(this.item)
       }
     },
     selectAll(check: boolean) {
       if (check) this.checked = check
     },
-    forceCheck(check:boolean) {
+    forceCheck(check: boolean) {
       this.checked = check
     }
   }

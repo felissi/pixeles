@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       hash: (Math.random() + 1).toString(36).substring(4), // length=36/4=8
-      test: ''
+      text: ''
     }
   },
   emits:['click']

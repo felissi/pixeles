@@ -19,7 +19,7 @@
       <ControlSearchBtn />
       <ControlListBtn />
       <ControlThumbnailBtn />
-      <ControlDeleteBtn @click="imageStore.deleteImages"/>
+      <ControlDeleteBtn @click="del" />
     </div>
   </div>
 </template>
@@ -27,5 +27,11 @@
 import { imageMixin } from '@/stores/imports/imageMixin'
 export default {
   mixins: [imageMixin],
+  methods: {
+    del() {
+      this.imageStore.deleteImages()
+      this.$bus.$emit('ShowSnackbar')
+    }
+  }
 }
 </script>

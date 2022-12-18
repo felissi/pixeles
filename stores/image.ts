@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-interface Image {
+export interface Image {
   id: number
   name: string
   size: number
@@ -12,7 +12,7 @@ interface Image {
 
 interface State {
   allImages: Image[]
-  selectedImages: Image[]
+  selectedImages: { [id: number]: Image }
   deletedImages: Image[]
   recentDeleted: Image[]
   currentImages: Image[]
@@ -24,7 +24,7 @@ export const useImageStore = defineStore('image', {
   state: (): State => {
     return {
       allImages: [],
-      selectedImages: [],
+      selectedImages: {},
       deletedImages: [],
       recentDeleted: [],
       currentImages: [],
@@ -41,6 +41,16 @@ export const useImageStore = defineStore('image', {
     //   }
     //   return r
     // },
+    select(image: Image) {
+      this.selectedImages[image.id] = image
+    },
+    unselect(thing: number | Image) {
+      if (typeof thing === 'number') {
+        delete this.selectedImages[thing]
+      } else {
+        delete this.selectedImages[thing.id]
+      }
+    },
     pendingDelete(id: number | null) {
       if (typeof id == 'number') this.goingDelete[id] = null
     },
@@ -49,21 +59,24 @@ export const useImageStore = defineStore('image', {
     },
     deleteImages() {
       const save: Image[] = []
-      this.recentDeleted = []
-      this.allImages.forEach((image) => {
-        if (this.pendingDeleteList.includes(image.id)) {
-          this.deletedImages.push(image)
-          this.recentDeleted.push(image)
-        } else {
-          save.push(image)
-        }
-      })
-      this.allImages = save
-      this.goingDelete = {}
+      if (this.pendingDeleteList.length > 0) {
+        this.recentDeleted = []
+        this.allImages.forEach((image) => {
+          if (this.pendingDeleteList.includes(image.id)) {
+            this.deletedImages.push(image)
+            this.recentDeleted.push(image)
+          } else {
+            save.push(image)
+          }
+        })
+        this.allImages = save
+        this.goingDelete = {}
+      }
     },
     undoDelete() {
       this.allImages = this.allImages.concat(this.recentDeleted)
       this.allImages.sort((a, b) => a.id - b.id)
+      this.deletedImages = this.deletedImages.slice(0, this.deletedImages.length - this.recentDeleted.length)
       this.recentDeleted = []
     }
   },

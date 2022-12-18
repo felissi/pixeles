@@ -13,7 +13,7 @@
             </thead>
             <tbody>
               <tr :key="image.id" v-for="image in allImages" class="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-100">
-                <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900`"><ControlTableCheckBox :id="image.id" /></td>
+                <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900`"><ControlTableCheckBox :id="image.id" :item="image" /></td>
                 <!-- <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900`"><img :src="image.url" class="w-[38px] h-[38px] sm:w-[64px] sm:h-[64px] mx-auto"/></td> -->
                 <td :class="`whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 ${headerClass[0]}`">
                   <div class="flex items-center align-top"><img :src="image.url" class="mr-3 h-[38px] w-[38px] sm:h-[64px] sm:w-[64px] rounded" />{{ image.name }}</div>
