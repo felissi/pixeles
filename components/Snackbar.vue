@@ -1,12 +1,12 @@
 <template>
   <div v-if="show" class="pointer-events-none fixed top-0 left-0 z-30 h-full w-full">
     <!-- pointer-events-none  -->
-    <div id="toast-undo" class="pointer-events-auto absolute bottom-3 left-3 flex w-full max-w-xs items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400" role="alert">
+    <div id="toast-undo" class="pointer-events-auto absolute bottom-3 left-3 flex w-full max-w-xs items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400 cursor-pointer" role="alert">
       <div class="text-sm font-normal">
         <slot> Conversation archived. </slot>
       </div>
       <div class="ml-auto flex items-center space-x-2">
-        <a @click="imageStore.undoDelete" class="rounded-lg p-1.5 text-sm font-medium text-blue-600 hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-700" href="#">
+        <a @click="imageStore.undoDelete" class="rounded-lg p-1.5 text-sm font-medium text-blue-600 hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-700" >
           <slot name="action"> Undo </slot>
         </a>
         <slot name="button">

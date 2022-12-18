@@ -65,6 +65,8 @@ export const useImageStore = defineStore('image', {
           if (this.pendingDeleteList.includes(image.id)) {
             this.deletedImages.push(image)
             this.recentDeleted.push(image)
+            this.withdrawPending(image.id)
+            this.unselect(image.id)
           } else {
             save.push(image)
           }

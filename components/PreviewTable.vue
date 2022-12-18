@@ -2,7 +2,7 @@
   <div class="flex w-full flex-col">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="overflow-y-auto h-screen lg:min-h-min">
+        <div class="overflow-y-auto max-h-screen lg:max-h-min">
           <table class="mb-[32px] w-full table-fixed sm:table-auto">
             <thead class="border-b bg-white sticky z-10 top-0">
               <tr>
