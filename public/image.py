@@ -55,7 +55,7 @@ async def main(event):
     if __NUXT__.pinia.image.allImages : 
         await py_getBlob(__NUXT__.pinia.image.allImages)
     else:
-        print('target.files is empty')
+        js.console.log('target.files is empty')
     # for i in __NUXT__.pinia.image.inputImages:
 
     #     __NUXT__.pinia.image.allImages.push(py_getBlob(i))
