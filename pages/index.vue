@@ -13,6 +13,8 @@
   <SmallActionBtn />
   <Snackbar />
   <ActionMenu />
+  <Percentage />
+
 </template>
 <script lang="ts">
 import { imageMixin } from '@/stores/imports/imageMixin'
