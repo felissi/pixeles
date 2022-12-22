@@ -81,15 +81,21 @@ export const useImageStore = defineStore('image', {
       this.allImages.sort((a, b) => a.id - b.id)
       this.deletedImages = this.deletedImages.slice(0, this.deletedImages.length - this.recentDeleted.length)
       this.recentDeleted = []
+    },
+    byHash(): { [hash: string]: Image[] } {
+      return this.group(this.allImages, ({ hash }) => hash)
     }
   },
   getters: {
-    allImagesByHash(state: State) {},
     pendingDeleteList(): number[] {
       return Object.keys(this.goingDelete).map((s) => Number(s))
     },
     isAllSelected(): boolean {
       return Object.keys(this.goingDelete).length === this.allImages.length
+    },
+    isAllImagesScanned(): boolean {
+      if (this.allImages.length === 0) return false
+      return this.allImages.every(({ hash }) => hash.length > 0)
     }
   }
 })

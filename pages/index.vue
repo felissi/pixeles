@@ -13,12 +13,12 @@
   <SmallActionBtn />
   <Snackbar />
   <ActionMenu />
-  <Percentage />
+  <!-- <Percentage /> -->
+  <Avatar :source="allImages"/>
 
 </template>
 <script lang="ts">
 import { imageMixin } from '@/stores/imports/imageMixin'
-import ActionMenu from '~~/components/ActionMenu.vue'
 export default {
     mixins: [imageMixin],
     data() {
@@ -72,6 +72,5 @@ export default {
         }
     },
     watch: {},
-    components: { ActionMenu }
 }
 </script>

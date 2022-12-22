@@ -2,6 +2,7 @@
   <Result />
   <div>
     <Preview />
+    <!-- <Avatar /> -->
   </div>
   <FloatingActionBtn />
   <SmallActionBtn />
