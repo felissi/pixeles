@@ -10,16 +10,18 @@ import imagehash
 
 
 async def py_getBlob(files):
-    files = files #type : pyodide.ffi.JsProxy
+    # files = files #type : pyodide.ffi.JsProxy
     # print(f'files {dir(files)}')
     for i,f in enumerate(files):
-        print(f'file name is {f.name}')
-        print(f'keys of f={f.object_keys()}')
+        # print(f'file name is {f.name}')
+        # print(f'keys of f={f.object_keys()}')
         # url = js.URL.createObjectURL(f.blob)
         hash = await file_to_hash(f.blob)
-        update_image_details(i,hash,url)
-        print(hash)
+        update_image_details(i,hash)
+        # print(hash)
 
+def tigger_update(element: pyodide.ffi.JsProxy):
+    element.blur()
 
 async def file_to_hash(f: pyodide.ffi.JsProxy) -> imagehash.ImageHash:
     data = js.Uint8Array.new(await f.arrayBuffer())
@@ -43,10 +45,9 @@ def byte_to_img(data: io.BytesIO) -> Image.Image:
 def get_image_hash(imgs):
     print(123)
 
-def update_image_details(index:int,hash:str,url:str):
+def update_image_details(index:int,hash:str):
     all_images = __NUXT__.pinia.image.allImages #type : pyodide.ffi.JsProxy
     image = all_images[index]
-    image.url=url
     image.hash=hash
 
 def listen_btn():
@@ -54,10 +55,10 @@ def listen_btn():
 
 async def main(event):
     if __NUXT__.pinia.image.allImages : 
-        print(__NUXT__.pinia.image.allImages)
         await py_getBlob(__NUXT__.pinia.image.allImages)
+        tigger_update(event.target)
     else:
-        print('target.files is empty')
+        js.console.log('target.files is empty')
     # for i in __NUXT__.pinia.image.inputImages:
 
     #     __NUXT__.pinia.image.allImages.push(py_getBlob(i))

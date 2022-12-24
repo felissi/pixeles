@@ -19,7 +19,19 @@
       <ControlSearchBtn />
       <ControlListBtn />
       <ControlThumbnailBtn />
-      <ControlDeleteBtn />
+      <ControlDeleteBtn @click="del" />
     </div>
   </div>
 </template>
+<script lang="ts">
+import { imageMixin } from '@/stores/imports/imageMixin'
+export default {
+  mixins: [imageMixin],
+  methods: {
+    del() {
+      this.imageStore.deleteImages()
+      this.$bus.$emit('ShowSnackbar')
+    }
+  }
+}
+</script>

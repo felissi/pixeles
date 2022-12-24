@@ -9,14 +9,15 @@ export const imageMixin = {
   data() {
     const store = storeToRefs(useImageStore())
     return {
-      image: {
-        allImages: store.allImages,
-        selectedImages: store.selectedImages,
-        deletedImages: store.deletedImages,
-        currentImages: store.currentImages,
-        inputImages: store.inputImages,
-        goingDelete: store.goingDelete
-      }
+      // image: {
+      //   allImages: store.allImages,
+      //   selectedImages: store.selectedImages,
+      //   deletedImages: store.deletedImages,
+      //   recentDeleted: store.recentDeleted,
+      //   currentImages: store.currentImages,
+      //   inputImages: store.inputImages,
+      //   goingDelete: store.goingDelete
+      // }
     }
   },
   methods: {
@@ -27,7 +28,15 @@ export const imageMixin = {
     // State
     // ...mapState(useImageStore, ['allImages','selectedImages','deletedImages','currentImages','inputImages']),
     ...mapStores(useImageStore),
-    ...mapWritableState(useImageStore, ['allImages', 'selectedImages', 'deletedImages', 'currentImages', 'inputImages', 'goingDelete'])
+    ...mapWritableState(useImageStore, [
+      'allImages', //
+      'selectedImages',
+      'deletedImages',
+      'currentImages',
+      'inputImages',
+      'goingDelete',
+      'recentDeleted'
+    ])
     // Getter
     // ...mapState(useImageStore, ['defaultMode'])
   }
