@@ -5,6 +5,7 @@
         <PreviewControl />
       </div>
       <PreviewTable />
+      <PreviewThumbnailView />
     </div>
   </div>
 </template>

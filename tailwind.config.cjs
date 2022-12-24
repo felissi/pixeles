@@ -166,7 +166,11 @@ module.exports = {
       purple: colors.purple,
       fuchsia: colors.fuchsia,
       pink: colors.pink,
-      rose: colors.rose
+      rose: colors.rose,
+      primary: {
+        light: colors.violet[100],
+        DEFAULT: colors.violet[700]
+      }
     }),
     columns: {
       auto: 'auto',

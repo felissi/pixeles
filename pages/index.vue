@@ -7,14 +7,16 @@
       <!-- @click="LoadPyScript" -->
     </Dropzone>
     <Preview />
+
   </div>
   <component :is="`py-script`" src="/image.py"></component>
+  <Duplicated />
   <FloatingActionBtn />
   <SmallActionBtn />
   <Snackbar />
   <ActionMenu />
   <!-- <Percentage /> -->
-  <Avatar :source="allImages"/>
+  <!-- <Avatar :source="allImages"/> -->
 
 </template>
 <script lang="ts">

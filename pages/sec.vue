@@ -1,8 +1,8 @@
 <template>
   <Result />
-  <div>
-    <Preview />
-    <!-- <Avatar /> -->
+  <div class="bg-[#fff0f7]">
+
+    <Duplicated />
   </div>
   <FloatingActionBtn />
   <SmallActionBtn />

@@ -20,6 +20,8 @@ async def py_getBlob(files):
         update_image_details(i,hash)
         # print(hash)
 
+def tigger_update(element: pyodide.ffi.JsProxy):
+    element.blur()
 
 async def file_to_hash(f: pyodide.ffi.JsProxy) -> imagehash.ImageHash:
     data = js.Uint8Array.new(await f.arrayBuffer())
@@ -54,6 +56,7 @@ def listen_btn():
 async def main(event):
     if __NUXT__.pinia.image.allImages : 
         await py_getBlob(__NUXT__.pinia.image.allImages)
+        tigger_update(event.target)
     else:
         js.console.log('target.files is empty')
     # for i in __NUXT__.pinia.image.inputImages:

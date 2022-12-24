@@ -6,7 +6,7 @@
       <circle  cx="145" cy="145" r="120" stroke="currentColor" stroke-width="20" fill="transparent" :stroke-dasharray="circumference" class="an text-blue-500 shadow-inner" stroke-linecap="round" />
     </svg>
     <span class="absolute text-5xl" x-text="`${currentSkill.percent}%`"></span>
-    <div class="fixed text-6xl">{{ `${percent}%` }}</div>
+    <div class="relative text-6xl">{{ `${percent}%` }}</div>
   </div>
 </template>
 <script>

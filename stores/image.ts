@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import utils from './utils'
 export interface Image {
   id: number
   name: string
@@ -18,6 +19,7 @@ interface State {
   currentImages: Image[]
   inputImages: Partial<FileList>
   goingDelete: { [id: number]: null }
+  toUpdate: boolean
 }
 
 export const useImageStore = defineStore('image', {
@@ -29,19 +31,11 @@ export const useImageStore = defineStore('image', {
       recentDeleted: [],
       currentImages: [],
       inputImages: [],
-      goingDelete: {}
+      goingDelete: {},
+      toUpdate: false
     }
   },
   actions: {
-    group<T, U extends PropertyKey, F extends (arg: T, index: number, list: T[]) => U>(arr: T[], func: F): Record<U, T[]> {
-      let r = {} as Record<U, T[]>
-      for (let i = 0; i < arr.length; i++) {
-        let t = func(arr[i], i, arr)
-        r[t] = r[t] ?? []
-        r[t].push(arr[i])
-      }
-      return r
-    },
     select(image: Image) {
       this.selectedImages[image.id] = image
     },
@@ -82,8 +76,10 @@ export const useImageStore = defineStore('image', {
       this.deletedImages = this.deletedImages.slice(0, this.deletedImages.length - this.recentDeleted.length)
       this.recentDeleted = []
     },
-    byHash(): { [hash: string]: Image[] } {
-      return this.group(this.allImages, ({ hash }) => hash)
+    forceUpdate() {
+      this.allImages.push(this.allImages[this.allImages.length - 1])
+      this.allImages.pop()
+      this.toUpdate = !this.toUpdate
     }
   },
   getters: {
@@ -96,6 +92,13 @@ export const useImageStore = defineStore('image', {
     isAllImagesScanned(): boolean {
       if (this.allImages.length === 0) return false
       return this.allImages.every(({ hash }) => hash.length > 0)
+    },
+    byHash(): { [hash: string]: Image[] } {
+      if (this.allImages.every(({ hash }) => hash.length === 0)) return {}
+      return utils.group(
+        this.allImages.filter((image) => image.hash.length > 0),
+        ({ hash }) => hash
+      )
     }
   }
 })
