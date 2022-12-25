@@ -13,29 +13,8 @@ export default {
   mixins: [imageMixin],
   data() {
     return {
-      show: true,
-      timeout: 5
+      show: true
     }
-  },
-  // methods: {
-  //   toUpdate(event: FocusEvent) {
-  //     console.log(event)
-  //     this.imageStore.forceUpdate()
-  //   }
-  // }
-  // mounted() {
-  //   this.$bus.$on('ShowSnackbar', (text:string) => {
-  //     this.show = true
-  //   })
-  // },
-  // watch: {
-  //   async show(yes) {
-  //     if (yes) {
-  //       settimeout(() => {
-  //         this.show = false
-  //       }, this.timeout * 1000)
-  //     }
-  //   }
-  // }
+  }
 }
 </script>

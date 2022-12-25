@@ -28,15 +28,15 @@ export const imageMixin = {
     // State
     // ...mapState(useImageStore, ['allImages','selectedImages','deletedImages','currentImages','inputImages']),
     ...mapStores(useImageStore),
-    ...mapWritableState(useImageStore, [
-      'allImages', //
-      'selectedImages',
-      'deletedImages',
-      'currentImages',
-      'inputImages',
-      'goingDelete',
-      'recentDeleted'
-    ])
+    // ...mapWritableState(useImageStore, [
+    //   'allImages', //
+    //   'selectedImages',
+    //   'deletedImages',
+    //   'currentImages',
+    //   'inputImages',
+    //   'goingDelete',
+    //   'recentDeleted'
+    // ])
     // Getter
     // ...mapState(useImageStore, ['defaultMode'])
   }

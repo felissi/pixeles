@@ -1,5 +1,11 @@
 <template>
   <ControlBtnTemplate>
-    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M15.675 11.5v-6H21v6Zm-6.325 0v-6h5.325v6Zm-6.325 0v-6H8.35v6Zm0 7v-6H8.35v6Zm6.325 0v-6h5.325v6Zm6.325 0v-6H21v6Z" /></svg>
+    <svg :class="{ 'fill-primary': controlStore.previewMode === 'thumbnail' }" class="transition-colors" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M15.675 11.5v-6H21v6Zm-6.325 0v-6h5.325v6Zm-6.325 0v-6H8.35v6Zm0 7v-6H8.35v6Zm6.325 0v-6h5.325v6Zm6.325 0v-6H21v6Z" /></svg>
   </ControlBtnTemplate>
 </template>
+<script>
+import { controlMixin } from '@/stores/imports/controlMixin'
+export default {
+  mixins: [controlMixin]
+}
+</script>

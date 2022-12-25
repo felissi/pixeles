@@ -1,24 +1,17 @@
 from js import __NUXT__  # type:ignore
-import js
-from pyodide.ffi import create_proxy
+import js # type:ignore
+from pyodide.ffi import create_proxy # type:ignore
 import asyncio
 import io
 from PIL import Image
-import pyodide
-import imagehash
-# createObject(create_proxy(globals()), "pyodideGlobals")
+import pyodide # type:ignore
+import imagehash # type:ignore
 
 
-async def py_getBlob(files):
-    # files = files #type : pyodide.ffi.JsProxy
-    # print(f'files {dir(files)}')
+async def py_getBlob(files: pyodide.ffi.JsProxy):
     for i,f in enumerate(files):
-        # print(f'file name is {f.name}')
-        # print(f'keys of f={f.object_keys()}')
-        # url = js.URL.createObjectURL(f.blob)
         hash = await file_to_hash(f.blob)
         update_image_details(i,hash)
-        # print(hash)
 
 def tigger_update(element: pyodide.ffi.JsProxy):
     element.blur()
@@ -26,13 +19,8 @@ def tigger_update(element: pyodide.ffi.JsProxy):
 async def file_to_hash(f: pyodide.ffi.JsProxy) -> imagehash.ImageHash:
     data = js.Uint8Array.new(await f.arrayBuffer())
     binary_data = io.BytesIO(bytearray(data))
-    # print(binary_data)
     img = byte_to_img(binary_data)
-    # print(img)
     hash = imagehash.average_hash(img)
-    # print(type(hash))
-    # print(hash.hash)
-    # print(f'str = {type(str(hash))} = {str(hash)}')
 
     return str(hash)
 
@@ -59,14 +47,5 @@ async def main(event):
         tigger_update(event.target)
     else:
         js.console.log('target.files is empty')
-    # for i in __NUXT__.pinia.image.inputImages:
-
-    #     __NUXT__.pinia.image.allImages.push(py_getBlob(i))
-    #     # print(i)
-    #     pass
-    # __NUXT__.pinia.image.inputImages = create_proxy(
-    #     {'name': '123', 'size': '1234'})
-    # print(__NUXT__.pinia.image.inputImages)
 
 listen_btn()
-# main()

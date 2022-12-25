@@ -19,6 +19,7 @@ interface State {
   currentImages: Image[]
   inputImages: Partial<FileList>
   goingDelete: { [id: number]: null }
+  uploadCount: number
   toUpdate: boolean
 }
 
@@ -32,6 +33,7 @@ export const useImageStore = defineStore('image', {
       currentImages: [],
       inputImages: [],
       goingDelete: {},
+      uploadCount: 0,
       toUpdate: false
     }
   },
@@ -80,6 +82,29 @@ export const useImageStore = defineStore('image', {
       this.allImages.push(this.allImages[this.allImages.length - 1])
       this.allImages.pop()
       this.toUpdate = !this.toUpdate
+    },
+    fileUpload(event: Event) {
+      const files = (event.target as HTMLInputElement).files
+      if (files != null) {
+        this.inputImages = files
+        this.feedAllImages(files)
+      }
+    },
+    feedAllImages(files: FileList) {
+      for (let f of files) {
+        const { name, size, type, lastModified } = f
+        this.allImages.push({
+          id: this.uploadCount,
+          name: name,
+          size: size,
+          type: type,
+          lastModified: lastModified,
+          url: URL.createObjectURL(f),
+          hash: '',
+          blob: f
+        })
+        this.uploadCount++
+      }
     }
   },
   getters: {
