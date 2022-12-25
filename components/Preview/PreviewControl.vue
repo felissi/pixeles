@@ -11,25 +11,13 @@
     <div class="col-span-1 hidden items-center justify-center space-x-2 sm:flex"></div>
     <div class="col-span-1 flex justify-end">
       <ControlSearchBtn />
-      <ControlListBtn
-        @click="
-          () => {
-            controlStore.previewMode = 'list'
-          }
-        "
-      />
-      <ControlThumbnailBtn
-        @click="
-          () => {
-            controlStore.previewMode = 'thumbnail'
-          }
-        "
-      />
-      <ControlDeleteBtn @click="del" />
+      <ControlListBtn @click.native=" () => { controlStore.previewMode = 'list' } " /> 
+      <ControlThumbnailBtn @click.native=" () => { controlStore.previewMode = 'thumbnail' } " />
+      <ControlDeleteBtn @click.native="del" />
     </div>
   </div>
 </template>
-<script lang="ts">
+<script>
 import { imageMixin } from '@/stores/imports/imageMixin'
 import { controlMixin } from '@/stores/imports/controlMixin'
 export default {
