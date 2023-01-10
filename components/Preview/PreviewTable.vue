@@ -1,10 +1,10 @@
 <template>
-  <div class="flex w-full flex-col">
-    <div class=" -mb-2 overflow-x-auto ">
-      <div class="inline-block min-w-full p-0 m-0">
-        <div class="overflow-y-auto max-h-screen lg:max-h-min">
-          <table class=" w-full table-fixed sm:table-auto">
-            <thead class="border-b bg-white sticky z-10 top-0">
+  <div class="flex w-full flex-col h-[340px]">
+    <div class="-mb-2 overflow-x-auto">
+      <div class="m-0 inline-block min-w-full p-0">
+        <div class="max-h-screen overflow-y-auto lg:max-h-min">
+          <table class="w-full table-fixed sm:table-auto">
+            <thead class="sticky top-0 z-10 border-b bg-white">
               <tr>
                 <th scope="col" class="w-[32px] px-6 py-4 text-left text-sm font-medium text-gray-900 sm:w-fit"><ControlTableParentCheckBox /></th>
                 <!-- <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900 sm:w-[64px] min-w-[40px] w-[40px]"></th> -->
@@ -14,9 +14,10 @@
             <tbody>
               <tr @contextmenu.prevent="showMenu" :key="image.id" v-for="image in imageStore.allImages" class="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-100">
                 <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900`"><ControlTableCheckBox :id="image.id" :item="image" /></td>
-                <!-- <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900`"><img :src="image.url" class="w-[38px] h-[38px] sm:w-[64px] sm:h-[64px] mx-auto"/></td> -->
                 <td :class="`whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 ${headerClass[0]}`">
-                  <div class="flex items-center align-top"><img :src="image.url" class="mr-3 h-[38px] w-[38px] sm:h-[64px] sm:w-[64px] rounded" />{{ image.name }}</div>
+                  <div class="flex items-center align-top">
+                    <img :src="image.thumbnail" class="mr-3 h-[38px] w-[38px] rounded sm:h-[64px] sm:w-[64px]" /><span class="truncate text-ellipsis">{{ image.name }}</span>
+                  </div>
                 </td>
                 <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900 ${headerClass[1]}`">{{ `${toMB(image.size)} MB` }}</td>
                 <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light  text-gray-900 ${headerClass[2]}`">{{ image.type }}</td>
@@ -45,7 +46,7 @@ export default {
     toDate(date: number): Date {
       return new Date(date)
     },
-    showMenu(event:MouseEvent) {
+    showMenu(event: MouseEvent) {
       this.$bus.$emit('ShowActionMenu', event)
     }
   }

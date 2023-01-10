@@ -30,8 +30,6 @@
                       <dt class="sr-only">Images</dt>
                       <dd class="flex justify-end -space-x-2 sm:justify-start lg:justify-end xl:justify-start">
                         <Avatar :source="item" />
-
-                        <!-- <img v-for="image in item" :src="image.url" :alt="image.name" width="48" height="48" class="h-7 w-7 rounded-full border-2 border-white bg-gray-100" /> -->
                       </dd>
                     </div>
                   </dl>

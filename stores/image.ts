@@ -6,9 +6,10 @@ export interface Image {
   size: number
   type: string
   lastModified: number
-  blob: object
+  blob: File
   url: string
   hash: string
+  thumbnail: string
 }
 
 interface State {
@@ -23,6 +24,7 @@ interface State {
   toUpdate: boolean
 }
 
+const [thumbnailWidth, thumbnailHeight] = [320, 320]
 export const useImageStore = defineStore('image', {
   state: (): State => {
     return {
@@ -90,7 +92,7 @@ export const useImageStore = defineStore('image', {
         this.feedAllImages(files)
       }
     },
-    feedAllImages(files: FileList) {
+    async feedAllImages(files: FileList) {
       for (let f of files) {
         const { name, size, type, lastModified } = f
         this.allImages.push({
@@ -101,7 +103,8 @@ export const useImageStore = defineStore('image', {
           lastModified: lastModified,
           url: URL.createObjectURL(f),
           hash: '',
-          blob: f
+          blob: f,
+          thumbnail: await utils.getThumbnail(f, [thumbnailWidth, thumbnailHeight])
         })
         this.uploadCount++
       }

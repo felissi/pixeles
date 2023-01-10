@@ -1,5 +1,3 @@
 <template>
-  <nav class="w-full h-[56px] shadow-md">
-
-  </nav>
+  <nav class="h-[64px] w-full shadow-md"></nav>
 </template>

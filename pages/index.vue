@@ -1,4 +1,6 @@
 <template>
+  <LoadPyscript />
+  <FloatingHeader />
   <Hero />
   <div>
     <div class="mb-[220px]"></div>

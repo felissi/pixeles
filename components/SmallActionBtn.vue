@@ -26,7 +26,7 @@
       data-dial-toggle="speed-dial-menu-text-outside-button-square"
       aria-controls="speed-dial-menu-text-outside-button-square"
       aria-expanded="false"
-      class="flex h-14 w-14 items-center justify-center rounded-full bg-blue-700 text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      class="flex h-14 w-14 items-center justify-center rounded-full bg-violet-700 text-white hover:bg-violet-800 focus:outline-none focus:ring-4 focus:ring-violet-300 dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800"
     >
       <svg aria-hidden="true" class="h-8 w-8 transition-transform " :class="{'rotate-45':hover}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
       <span class="sr-only">Open actions menu</span>
