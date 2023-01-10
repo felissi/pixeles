@@ -937,5 +937,8 @@ module.exports = {
       50: '50'
     }
   },
-  plugins: [require('flowbite/plugin'), require('autoprefixer')]
+  plugins: [require('flowbite/plugin'), require('autoprefixer'), require('tailwind-scrollbar')],
+  variants: {
+    scrollbar: ['rounded']
+}
 }
