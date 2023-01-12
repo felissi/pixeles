@@ -1,17 +1,17 @@
 <template>
   <LoadPyscript />
-  <section class="bg-[#d3d8e4] h-screen">
-
+  <section class="h-screen bg-[#d3d8e4]">
+    <WaveLoading v-if="controlStore.scanning" />
 
     <FloatingHeader />
-  <div v-if="imageStore.haveScanned">Scaned</div>
+    <!-- <div v-if="imageStore.haveScanned">Scaned</div> -->
 
     <Section>
-      <h2 class="text-3xl font-medium mb-14">WEQWFWEQFGQETGQWR</h2>
+      <h2 class="mb-14 text-3xl font-medium">WEQWFWEQFGQETGQWR</h2>
       <Dropzone v-show="imageStore.allImages.length === 0">
         <Upload />
       </Dropzone>
-      <Preview  v-if="imageStore.allImages.length" />
+      <Preview v-if="imageStore.allImages.length" />
     </Section>
     <!-- <FloatingActionBtn /> -->
     <BottomControlPanel />
@@ -23,7 +23,8 @@
 </template>
 <script lang="ts">
 import { imageMixin } from '@/stores/imports/imageMixin'
+import { controlMixin } from '@/stores/imports/controlMixin'
 export default {
-  mixins: [imageMixin]
+  mixins: [imageMixin, controlMixin]
 }
 </script>
