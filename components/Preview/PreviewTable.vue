@@ -1,9 +1,9 @@
 <template>
-  <div class="flex w-full flex-col sm:h-[337px] min-h-[337px] h-[450px]">
-    <div class="-mb-2 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-slate-400 scrollbar-track-slate-100">
-      <div class="m-0 inline-block  p-0 w-full">
-        <div class="max-h-screen overflow-y-auto lg:max-h-min">
-          <table class="w-full table-fixed ">
+  <div class="flex h-[450px] min-h-[337px] w-full flex-col sm:h-[337px]">
+    <div class="-mb-2 overflow-x-auto rounded-b-lg scrollbar-thin scrollbar-track-slate-100 scrollbar-thumb-slate-400 scrollbar-track-rounded-full scrollbar-thumb-rounded-full">
+      <div class="relative m-0 h-full w-full p-0">
+        <div class="h-full">
+          <table class="h-full w-full table-fixed">
             <thead class="sticky top-0 z-10 border-b bg-white">
               <tr>
                 <th scope="col" class="w-[32px] px-6 py-4 text-left text-sm font-medium text-gray-900"><ControlTableParentCheckBox /></th>
@@ -19,10 +19,10 @@
                     <img :src="image.thumbnail" class="mr-3 h-[38px] w-[38px] rounded sm:h-[64px] sm:w-[64px]" /><span class="truncate text-ellipsis">{{ image.name }}</span>
                   </div>
                 </td>
-                <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light text-left text-gray-900 ${headerClass[1]}`">{{ `${toMB(image.size)} MB` }}</td>
-                <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light text-left text-gray-900 ${headerClass[2]}`">{{ image.type }}</td>
-                <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light text-left text-gray-900 ${headerClass[3]}`">{{ toDate(image.lastModified) }}</td>
-                <td :class="`whitespace-nowrap px-6 py-4 text-sm font-light text-left text-gray-900 ${headerClass[4]}`"><TableMoreButton /></td>
+                <td :class="`whitespace-nowrap px-6 py-4 text-left text-sm font-light text-gray-900 ${headerClass[1]}`">{{ `${toMB(image.size)} MB` }}</td>
+                <td :class="`whitespace-nowrap px-6 py-4 text-left text-sm font-light text-gray-900 ${headerClass[2]}`">{{ image.type }}</td>
+                <td :class="`whitespace-nowrap px-6 py-4 text-left text-sm font-light text-gray-900 ${headerClass[3]}`">{{ toDate(image.lastModified) }}</td>
+                <td :class="`whitespace-nowrap px-6 py-4 text-left text-sm font-light text-gray-900 ${headerClass[4]}`"><TableMoreButton /></td>
               </tr>
             </tbody>
           </table>

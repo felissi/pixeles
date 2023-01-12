@@ -18,7 +18,7 @@
   </div>
 </template>
 <style>
-.my-shadow{
-  box-shadow: #ffffff26 0 0 0 1px, #32325d45 0 80px 120px -20px, #0000004d 0 30px 60px -10px;
+.my-shadow{ 
+  /* repress vite postcss error */
 }
 </style>

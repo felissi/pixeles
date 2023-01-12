@@ -7,6 +7,7 @@ from PIL import Image
 import pyodide # type:ignore
 import imagehash # type:ignore
 
+update_every = 10
 
 async def py_getBlob(files: pyodide.ffi.JsProxy):
     for i,f in enumerate(files):

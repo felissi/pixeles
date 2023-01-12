@@ -2,7 +2,7 @@
   <section class="fixed bottom-12 left-[50%] z-30 flex h-24 w-[720px] -translate-x-1/2 justify-evenly rounded-lg bg-white bg-gradient-to-br from-[#f7eef5] to-[#ebf1fa] p-6 align-middle opacity-80 shadow-[0px_50px_100px_-20px_rgba(0,0,0,0.4)] transition-all duration-300">
     <div class="mr-6 transition-all duration-300">
       <div class="grid gap-2">
-        <label class="label left text-xs">Colors</label>
+        <label class=" left text-xs">Colors</label>
         <div class="opt-btn group" data-v-f2952dc6="">
           <div class="dark-mode-button--dark dark-mode-button" data-v-f2952dc6="">
             <div class="icon" data-v-f2952dc6="">
@@ -31,7 +31,7 @@
     </div>
     <div class="mr-6 transition-all duration-300">
       <div class="grid gap-2">
-        <label class="label left text-xs">Colors</label>
+        <label class=" left text-xs">Colors</label>
         <div class="flex h-6 align-middle">
           <div>
             <!---->
@@ -52,7 +52,7 @@
     </div>
     <div class="mr-6 transition-all duration-300">
       <div class="grid gap-2">
-        <label class="label left text-xs"><input class="peer hidden" type="checkbox" />Background</label>
+        <label class=" left text-xs"><input class="peer hidden" type="checkbox" />Background</label>
         <div class="flex h-6 align-middle">
           <svg width="32" height="18" viewBox="0 0 32 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer select-none fill-primary">
             <rect x="1" y="1" width="30" height="16" rx="8" class="frame"></rect>
@@ -63,7 +63,7 @@
     </div>
     <div class="mr-6 transition-all duration-300">
       <div class="grid gap-2">
-        <label class="label left text-xs">
+        <label class=" left text-xs">
           Dark mode
           <input class="peer" type="checkbox" />
           <div class="flex h-6 align-middle">
@@ -77,7 +77,7 @@
     </div>
     <div class="mr-6 transition-all duration-300">
       <div class="grid gap-2">
-        <label class="label left text-xs">Padding</label>
+        <label class=" left text-xs">Padding</label>
         <div class="flex h-6 align-middle">
           <div class="flex align-middle">
             <div class="h-6 cursor-pointer select-none rounded py-1 px-2 text-left transition-all duration-300">
@@ -98,7 +98,7 @@
     </div>
     <div class="mr-6 transition-all duration-300">
       <div class="grid gap-2">
-        <label class="label left text-xs">Language</label>
+        <label class=" left text-xs">Language</label>
         <div class="flex h-6 align-middle">
           <div class="relative h-6 text-xs">
             <div class="flex h-full cursor-pointer select-none items-center rounded py-0 px-1 transition-all duration-300">
@@ -118,7 +118,7 @@
     </div>
     <div class="mr-0 flex rounded-t transition-all duration-300">
       <div class="relative flex">
-        <button class="whitespace-no-wrap flex cursor-pointer items-center rounded border-0 bg-violet-600/30 hover:bg-violet-800/40 py-3 px-4 hover:text-violet-800 text-violet-700 transition-all duration-300">
+        <button @blur="imageStore.forceUpdate" id="ScanBtn" class="whitespace-no-wrap flex cursor-pointer items-center rounded border-0 bg-violet-600/30 py-3 px-4 text-violet-700 transition-all duration-300 hover:bg-violet-800/40 hover:text-violet-800">
           Scan!
           <svg class="ml-2 fill-violet-700" width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -163,3 +163,10 @@
     </div>
   </section>
 </template>
+<script lang="ts">
+import { imageMixin } from '@/stores/imports/imageMixin'
+
+export default {
+  mixins: [imageMixin]
+}
+</script>

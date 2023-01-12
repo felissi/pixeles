@@ -127,6 +127,10 @@ export const useImageStore = defineStore('image', {
         this.allImages.filter((image) => image.hash.length > 0),
         ({ hash }) => hash
       )
+    },
+    haveScanned(): boolean {
+      if (!this.allImages.length) return false
+      return this.allImages[0].hash.length > 0
     }
   }
 })

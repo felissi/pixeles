@@ -1,8 +1,8 @@
 <template>
   <div class="sticky top-0 flex w-full items-center justify-center">
-    <div class="wrapper group flex w-full flex-col items-center justify-center  sm:mx-[10px]">
+    <div class="wrapper my-shadow group flex w-full flex-col items-center justify-center sm:mx-[10px]">
       <!-- border border-[#e5e7eb] -->
-      <div class="sticky top-0 z-10 h-full w-full border-b-[1px] bg-white flex items-center">
+      <div class="sticky top-0 z-10 flex h-full w-full items-center rounded-t-lg border-b-[1px] bg-white">
         <PreviewControl />
       </div>
       <PreviewTable v-if="controlStore.previewMode === 'list'" />
