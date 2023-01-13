@@ -3,7 +3,7 @@
     <div class="">
       <img :src="image.thumbnail" :class="{'border-2 border-violet-600':selected}" class="h-full w-full overflow-hidden rounded-lg bg-center object-scale-down object-center" />
     </div>
-    <div  class="p-auto flex h-10 overflow-clip justify-between rounded-lg border-t-transparent p-2 align-middle relative bottom-10">
+    <div  class="bg-gradient-to-t from-[#000000cf] to-transparent text-white/80 p-auto flex h-10 overflow-clip justify-between rounded-lg border-t-transparent p-2 align-middle relative bottom-10">
       <span class="truncate  text-ellipsis">
         {{ image.name }}
       </span>

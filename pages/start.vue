@@ -21,7 +21,7 @@
     <PyMain />
   </section>
 </template>
-<script lang="ts">
+<script>
 import { imageMixin } from '@/stores/imports/imageMixin'
 import { controlMixin } from '@/stores/imports/controlMixin'
 export default {
