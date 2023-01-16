@@ -11,7 +11,8 @@
       <Dropzone v-show="imageStore.allImages.length === 0">
         <Upload />
       </Dropzone>
-      <Preview v-if="imageStore.allImages.length" />
+      <Preview v-if="imageStore.allImages.length && !controlStore.isHadHash" />
+      <Duplicated v-if="controlStore.isHadHash" />
     </Section>
     <!-- <FloatingActionBtn /> -->
     <BottomControlPanel />

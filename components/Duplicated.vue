@@ -1,9 +1,9 @@
 <template>
-  <div class="flex h-screen w-full items-center justify-center bg-[#F9F5FF] py-2">
-    <div class="mx-[10px] flex h-full w-full flex-col items-center justify-center rounded-lg bg-white">
-      <div class="flex h-full w-full flex-col px-4 py-6 sm:px-9">
+  <div class="flex h-[450px] min-h-[337px] w-full items-center justify-center py-2 sm:h-[337px]">
+    <div class="my-shadow mx-[10px] flex h-full w-full flex-col items-center justify-center rounded-lg bg-white">
+      <div class="flex h-full w-full flex-col overflow-y-auto px-4 py-6 scrollbar-thin scrollbar-track-slate-100 scrollbar-thumb-slate-400 scrollbar-track-rounded-full scrollbar-thumb-rounded-full sm:px-9">
         <div class="">
-          <div class="mb-4 text-2xl">
+          <div class="mb-4 text-left text-2xl">
             <span class="align-middle"> Duplicated </span>
             <span class="mr-2 rounded bg-purple-100 px-2.5 py-0.5 align-middle text-sm font-medium text-purple-800 dark:bg-purple-200 dark:text-purple-900"> {{ Object.values(hashMap).filter((list) => list?.length > 1).length }}</span>
           </div>
@@ -15,30 +15,11 @@
           </form>
           <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <template v-for="(item, hash) in hashMap">
-              <li v-if="item.length > 1">
-                <a class="group block rounded-lg border border-gray-200 p-4 hover:border-transparent hover:bg-violet-500 hover:shadow-lg">
-                  <dl class="grid grid-cols-2 grid-rows-2 items-center sm:block lg:grid xl:block">
-                    <div>
-                      <dt class="sr-only">Title</dt>
-                      <dd class="font-medium leading-6 text-black group-hover:text-white">{{ hash }}</dd>
-                    </div>
-                    <div>
-                      <dt class="sr-only">Count</dt>
-                      <dd class="text-sm font-medium group-hover:text-violet-200 sm:mb-4 lg:mb-0 xl:mb-4">{{ item.length }}</dd>
-                    </div>
-                    <div class="col-start-2 row-start-1 row-end-3">
-                      <dt class="sr-only">Images</dt>
-                      <dd class="flex justify-end -space-x-2 sm:justify-start lg:justify-end xl:justify-start">
-                        <Avatar :source="item" />
-                      </dd>
-                    </div>
-                  </dl>
-                </a>
-              </li>
+              <ResultItem :item="item" :hash="hash" />
             </template>
-            <li class="flex rounded-lg hover:shadow-lg">
+            <!-- <li class="flex rounded-lg hover:shadow-lg">
               <a class="hover:shadow-xs flex w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-200 py-4 text-sm font-medium hover:border-transparent"> New Project </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>

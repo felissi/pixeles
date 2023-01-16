@@ -26,8 +26,7 @@ export const useControlStore = defineStore('control', {
     }
   },
   actions: {
-    forceUpdate() {
-    },
+    forceUpdate() {},
     togglePreview() {
       this.previewMode = this.previewMode === 'list' ? 'thumbnail' : 'list'
     },
@@ -47,13 +46,13 @@ export const useControlStore = defineStore('control', {
     }
   },
   getters: {
-    // isHadHash() {
-    //   const imageStore = useImageStore()
-    //   return imageStore.allImages.some((image) => image.hash.length >= 1)
-    // },
-    // isAllHadHash() {
-    //   const imageStore = useImageStore()
-    //   return imageStore.allImages.length ? imageStore.allImages.every((image) => image.hash.length >= 1) : false
-    // }
+    isHadHash() {
+      const imageStore = useImageStore()
+      return imageStore.allImages.some((image) => image.hash.length >= 1)
+    },
+    isAllHadHash() {
+      const imageStore = useImageStore()
+      return imageStore.allImages.length ? imageStore.allImages.every((image) => image.hash.length >= 1) : false
+    }
   }
 })
