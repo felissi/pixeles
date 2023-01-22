@@ -25,12 +25,6 @@
 import { imageMixin } from '@/stores/imports/imageMixin'
 export default {
     mixins: [imageMixin],
-    data() {
-        return {
-            // isPyScriptLoaded: false,
-            // uploadCounter: 0 // For id, always increment
-        };
-    },
     methods: {
         
     },

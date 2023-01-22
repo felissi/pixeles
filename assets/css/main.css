@@ -1,4 +1,7 @@
 @tailwind base;
+:root {
+  --bg-color: #d3d8e4;
+}
 @layer base {
   body {
     @apply bg-white text-gray-600 dark:bg-[#151515]  dark:text-[#CAC4D0];
@@ -6,7 +9,32 @@
   }
 }
 @tailwind components;
+.tab.active::before {
+  @apply scale-x-100 font-[900] opacity-100;
+}
+.active {
+  @apply font-[500] text-[#001d35];
+}
 @tailwind utilities;
 .my-shadow {
   box-shadow: #ffffff26 0 0 0 1px, #32325d45 0 80px 120px -20px, #0000004d 0 30px 60px -10px;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes stretch {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.animate-stretch {
+  animation: stretch 1s cubic-bezier(0.4, 0, 0.6, 1);
 }

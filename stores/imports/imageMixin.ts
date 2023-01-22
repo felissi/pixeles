@@ -6,20 +6,20 @@ export const imageMixin = {
     const imageStore = useImageStore()
     return { imageStore }
   },
-  data() {
-    const store = storeToRefs(useImageStore())
-    return {
-      // image: {
-      //   allImages: store.allImages,
-      //   selectedImages: store.selectedImages,
-      //   deletedImages: store.deletedImages,
-      //   recentDeleted: store.recentDeleted,
-      //   currentImages: store.currentImages,
-      //   inputImages: store.inputImages,
-      //   goingDelete: store.goingDelete
-      // }
-    }
-  },
+  // data() {
+  //   const store = storeToRefs(useImageStore())
+  //   return {
+  //     // image: {
+  //     //   allImages: store.allImages,
+  //     //   selectedImages: store.selectedImages,
+  //     //   deletedImages: store.deletedImages,
+  //     //   recentDeleted: store.recentDeleted,
+  //     //   currentImages: store.currentImages,
+  //     //   inputImages: store.inputImages,
+  //     //   goingDelete: store.goingDelete
+  //     // }
+  //   }
+  // },
   methods: {
     // Action
     // ...mapActions(useImageStore, ['pendingDelete'])

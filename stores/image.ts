@@ -22,6 +22,9 @@ interface State {
   goingDelete: { [id: number]: null }
   uploadCount: number
   toUpdate: boolean
+  isFeeding: boolean
+  isHadHash: boolean
+  isAllHadHash: boolean
 }
 
 const [thumbnailWidth, thumbnailHeight] = [320, 320]
@@ -36,7 +39,10 @@ export const useImageStore = defineStore('image', {
       inputImages: [],
       goingDelete: {},
       uploadCount: 0,
-      toUpdate: false
+      toUpdate: false,
+      isFeeding: false,
+      isHadHash: false,
+      isAllHadHash: false
     }
   },
   actions: {
@@ -83,6 +89,10 @@ export const useImageStore = defineStore('image', {
     forceUpdate() {
       this.allImages.push(this.allImages[this.allImages.length - 1])
       this.allImages.pop()
+      this.isHadHash = true
+      console.log("🚀 ~ file: image.ts:93 ~ forceUpdate ~ this.allImages.some(({ hash }) => hash.length > 0)", this.allImages.map(({ hash }) => hash.length))
+      this.isAllHadHash = true
+      console.log("🚀 ~ file: image.ts:95 ~ forceUpdate ~ this.allImages.every(({ hash }) => hash.length > 0)", this.allImages.map(({ hash }) => hash))
       this.toUpdate = !this.toUpdate
     },
     fileUpload(event: Event) {
@@ -93,6 +103,7 @@ export const useImageStore = defineStore('image', {
       }
     },
     async feedAllImages(files: FileList) {
+      this.isFeeding = true
       for (let f of files) {
         const { name, size, type, lastModified } = f
         this.allImages.push({
@@ -108,6 +119,7 @@ export const useImageStore = defineStore('image', {
         })
         this.uploadCount++
       }
+      this.isFeeding = false
     }
   },
   getters: {
@@ -117,20 +129,12 @@ export const useImageStore = defineStore('image', {
     isAllSelected(): boolean {
       return Object.keys(this.goingDelete).length === this.allImages.length
     },
-    isAllImagesScanned(): boolean {
-      if (this.allImages.length === 0) return false
-      return this.allImages.every(({ hash }) => hash.length > 0)
-    },
     byHash(): { [hash: string]: Image[] } {
       if (this.allImages.every(({ hash }) => hash.length === 0)) return {}
       return utils.group(
         this.allImages.filter((image) => image.hash.length > 0),
         ({ hash }) => hash
       )
-    },
-    haveScanned(): boolean {
-      if (!this.allImages.length) return false
-      return this.allImages[0].hash.length > 0
     }
   }
 })

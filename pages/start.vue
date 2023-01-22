@@ -1,10 +1,9 @@
 <template>
   <LoadPyscript />
-  <section class="h-screen bg-[#d3d8e4]">
+  <section class="min-h-screen bg-background">
     <WaveLoading v-if="controlStore.scanning" />
 
     <FloatingHeader />
-    <!-- <div v-if="imageStore.haveScanned">Scaned</div> -->
 
     <Section>
       <h2 class="mb-14 text-3xl font-medium">WEQWFWEQFGQETGQWR</h2>
@@ -12,7 +11,7 @@
         <Upload />
       </Dropzone>
       <Preview v-if="imageStore.allImages.length && !controlStore.isHadHash" />
-      <Duplicated v-if="controlStore.isHadHash" />
+      <Duplicated/>
     </Section>
     <!-- <FloatingActionBtn /> -->
     <BottomControlPanel />

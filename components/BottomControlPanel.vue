@@ -118,14 +118,21 @@
     </div>
     <div class="mr-0 flex rounded-t transition-all duration-300">
       <div class="relative flex">
-        <button @click="controlStore.startScanning" @blur="endProcess" id="ScanBtn" class="whitespace-no-wrap flex cursor-pointer items-center rounded border-0 bg-violet-600/30 py-3 px-4 text-violet-700 transition-all duration-300 hover:bg-violet-800/40 hover:text-violet-800">
+        <ControlScanBtn 
+        class="whitespace-no-wrap flex cursor-pointer items-center rounded border-0 bg-violet-600/30 py-3 px-4 text-violet-700 transition-all duration-300 hover:bg-violet-800/40 hover:text-violet-800"
+        :class="{'bg-violet-200 hover:bg-violet-200 cursor-wait':!controlStore.isReadyToScan}"
+        >
           Scan!
-          <svg class="ml-2 fill-violet-700" width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg v-if="controlStore.isReadyToScan" class="ml-2 fill-violet-700" width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M6.00635 10.1995C6.33008 10.1995 6.59668 9.93286 6.59668 9.61548V3.22974L6.55225 2.29028L6.93945 2.75366L7.82812 3.69946C7.92969 3.81372 8.07568 3.87085 8.22168 3.87085C8.51367 3.87085 8.75488 3.66138 8.75488 3.36304C8.75488 3.20435 8.69141 3.09009 8.5835 2.98218L6.45703 0.931885C6.30469 0.779541 6.15869 0.72876 6.00635 0.72876C5.84766 0.72876 5.70801 0.779541 5.55566 0.931885L3.42285 2.98218C3.31494 3.09009 3.25146 3.20435 3.25146 3.36304C3.25146 3.66138 3.48633 3.87085 3.77832 3.87085C3.92432 3.87085 4.07666 3.81372 4.17822 3.69946L5.06689 2.75366L5.46045 2.28394L5.40967 3.22974V9.61548C5.40967 9.93286 5.67627 10.1995 6.00635 10.1995ZM2.34375 15.2712H9.65625C11.0337 15.2712 11.7446 14.5603 11.7446 13.2019V6.96216C11.7446 5.60376 11.0337 4.89282 9.65625 4.89282H7.94238V6.15601H9.57373C10.1514 6.15601 10.4814 6.46069 10.4814 7.07007V13.0876C10.4814 13.697 10.1514 14.0017 9.57373 14.0017H2.42627C1.84229 14.0017 1.51855 13.697 1.51855 13.0876V7.07007C1.51855 6.46069 1.84229 6.15601 2.42627 6.15601H4.07666V4.89282H2.34375C0.972656 4.89282 0.255371 5.59741 0.255371 6.96216V13.2019C0.255371 14.5603 0.972656 15.2712 2.34375 15.2712Z"
             ></path>
           </svg>
-        </button>
+          <svg  v-else xmlns="http://www.w3.org/2000/svg" class="ml-2 animate-spin icon icon-tabler icon-tabler-loader-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 3a9 9 0 1 0 9 9"></path>
+</svg>
+        </ControlScanBtn>
         <div class="pointer-events-none absolute bottom-full opacity-0 transition-all duration-300">
           <div class="options">
             <a href="#" class="option"
@@ -163,17 +170,11 @@
     </div>
   </section>
 </template>
-<script lang="ts">
+<script>
 import { imageMixin } from '@/stores/imports/imageMixin'
 import { controlMixin } from '@/stores/imports/controlMixin'
 
 export default {
-  mixins: [imageMixin, controlMixin],
-  methods: {
-    endProcess() {
-      this.imageStore.forceUpdate()
-      this.controlStore.stopScanning()
-    }
-  }
+  mixins: [imageMixin, controlMixin]
 }
 </script>

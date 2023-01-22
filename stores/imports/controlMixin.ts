@@ -5,9 +5,9 @@ export const controlMixin = {
     const controlStore = useControlStore()
     return { controlStore }
   },
-  data() {
-    const store = storeToRefs(useControlStore())
-  },
+  // data() {
+  //   const store = storeToRefs(useControlStore())
+  // },
   computed: {
     ...mapStores(useControlStore),
     ...mapWritableState(useControlStore, ['selectAll'])

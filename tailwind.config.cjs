@@ -170,7 +170,8 @@ module.exports = {
       primary: {
         light: colors.violet[100],
         DEFAULT: colors.violet[700]
-      }
+      },
+      background: '#D3D8E4'
     }),
     columns: {
       auto: 'auto',
@@ -940,5 +941,5 @@ module.exports = {
   plugins: [require('flowbite/plugin'), require('autoprefixer'), require('tailwind-scrollbar')],
   variants: {
     scrollbar: ['rounded']
-}
+  }
 }

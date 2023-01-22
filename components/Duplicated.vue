@@ -13,9 +13,14 @@
             </svg>
             <input class="w-full rounded-md border border-gray-200 py-2 pl-10 text-sm text-black placeholder-gray-500 focus:border-primary focus:outline-none focus:ring-primary" type="text" aria-label="Filter projects" placeholder="Filter projects" />
           </form>
-          <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <template v-for="(item, hash) in hashMap">
-              <ResultItem :item="item" :hash="hash" />
+          <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <template v-for="(item, hash) in hashMap" v-if="!controlStore.scanning">
+              <LazyResultItem :item="item" :hash="hash" />
+            </template>
+            <template v-for="_ in [...Array(9)]" v-else>
+              <Transition  name="fade">
+                <LazyResultSkeletonItem />
+              </Transition>
             </template>
             <!-- <li class="flex rounded-lg hover:shadow-lg">
               <a class="hover:shadow-xs flex w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-200 py-4 text-sm font-medium hover:border-transparent"> New Project </a>
@@ -26,11 +31,12 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script>
 import { imageMixin } from '@/stores/imports/imageMixin'
+import { controlMixin } from '~~/stores/imports/controlMixin'
 
 export default {
-  mixins: [imageMixin],
+  mixins: [imageMixin, controlMixin],
   computed: {
     hashMap() {
       return this.imageStore.byHash
@@ -38,3 +44,14 @@ export default {
   }
 }
 </script>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

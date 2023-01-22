@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import { useImageStore } from './image'
 
+export const Pages = ['Overview', 'Duplicated', 'Unique', 'Upload'] as const
+
 interface State {
   selectAll: boolean
   forceCheck: boolean | null
@@ -10,6 +12,8 @@ interface State {
   startTime: number[]
   endTime: number[]
   processTime: number[]
+  currentPage: typeof Pages[number]
+  isHadHash: boolean
 }
 
 export const useControlStore = defineStore('control', {
@@ -22,7 +26,9 @@ export const useControlStore = defineStore('control', {
       scanning: false,
       startTime: [], // in ms
       endTime: [],
-      processTime: []
+      processTime: [],
+      currentPage: 'Overview',
+      isHadHash: false
     }
   },
   actions: {
@@ -40,19 +46,29 @@ export const useControlStore = defineStore('control', {
       this.endTime.push(Date.now())
       this.scanning = false
       this.getProcessTime(this.endTime.length - 1)
+      this.update()
     },
     getProcessTime(index: number) {
       this.processTime.push(this.endTime[index] - this.startTime[index])
+    },
+    update() {
+      const imageStore = useImageStore()
+      console.log('🚀 ~ file: control.ts:56 ~ update ~ imageStore', imageStore.allImages)
+      this.isHadHash = imageStore.allImages.length ? imageStore.allImages.some(({ hash }) => hash.length > 0) : false
     }
   },
   getters: {
     isHadHash() {
       const imageStore = useImageStore()
-      return imageStore.allImages.some((image) => image.hash.length >= 1)
+      return imageStore.isHadHash
     },
     isAllHadHash() {
       const imageStore = useImageStore()
-      return imageStore.allImages.length ? imageStore.allImages.every((image) => image.hash.length >= 1) : false
+      return imageStore.isAllHadHash
+    },
+    isReadyToScan() {
+      const imageStore = useImageStore()
+      return !imageStore.isFeeding
     }
   }
 })
